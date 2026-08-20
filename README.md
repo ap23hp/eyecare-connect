@@ -2,7 +2,7 @@
 
 A full-stack booking website for an orthoptic (eye care) clinic, designed and built end to end by me from visual design through deployment.
 
-**Live demo:** [add your Vercel URL here]
+**Live demo:** https://eyecare-connect-b8anc9b97-apra-k.vercel.app/
 
 ![EyeCare Connect homepage](./screenshots/home.png)
 
