@@ -31,6 +31,16 @@ export default function BookPage() {
           </div>
 
           <div className="max-w-lg">
+            {state.step > 0 && state.step < 4 && (
+              <button
+                type="button"
+                onClick={() => dispatch({ type: "BACK" })}
+                className="text-sm font-semibold text-muted mb-5 hover:text-accent"
+              >
+                &larr; Back
+              </button>
+            )}
+
             {state.step === 0 && (
               <AppointmentTypeStep
                 selectedId={state.typeId}

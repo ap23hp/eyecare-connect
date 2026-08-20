@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -8,9 +8,9 @@ export default function Navbar() {
   return (
     <header className="border-b border-border">
       <div className="flex items-center justify-between px-6 py-5 md:px-14 max-w-7xl mx-auto">
-        <span className="font-display text-lg font-bold">
+        <Link href="/" className="font-display text-lg font-bold">
           <span className="text-accent">EyeCare</span> Connect
-        </span>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-9">
           <a
@@ -37,9 +37,12 @@ export default function Navbar() {
           >
             Contact
           </a>
-          <button className="rounded-[10px] bg-accent px-[22px] py-[11px] text-sm font-semibold text-cream">
+          <Link
+            href="/book"
+            className="rounded-[10px] bg-accent px-5.5 py-2.75 text-sm font-semibold text-cream"
+          >
             Book
-          </button>
+          </Link>
         </nav>
 
         <div className="md:hidden">

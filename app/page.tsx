@@ -1,11 +1,11 @@
 import Navbar from "./components/layout/Navbar";
 import Image from "next/image";
 import Footer from "./components/layout/Footer";
+import Link from "next/link";
 export default function Home() {
   return (
     <div>
       <Navbar />
-
       <div className="px-6 py-10 md:px-14 md:py-16 max-w-7xl mx-auto">
         <div className="md:grid md:grid-cols-2 md:gap-12 md:items-center">
           <div>
@@ -22,9 +22,12 @@ export default function Home() {
               conditions, in a calm and unhurried setting.
             </p>
 
-            <button className="w-full md:w-auto md:px-8 rounded-xl bg-accent py-3.5 text-sm font-semibold text-cream mb-3 md:mb-0">
+            <Link
+              href="/book"
+              className="w-full md:w-auto md:px-8 rounded-xl bg-accent py-3.5 text-sm font-semibold text-cream mb-3 md:mb-0 inline-block text-center"
+            >
               Book a consultation
-            </button>
+            </Link>
           </div>
 
           <div className="mb-6 md:mb-0 md:order-last aspect-4/3 w-full rounded-2xl overflow-hidden">
@@ -119,14 +122,16 @@ export default function Home() {
               Most appointments available within the week.
             </p>
           </div>
-          <button className="w-full md:w-auto md:px-8 rounded-xl bg-cream py-3.5 text-sm font-semibold text-accent">
+          <Link
+            href="/book"
+            className="w-full md:w-auto md:px-8 rounded-xl bg-cream py-3.5 text-sm font-semibold text-accent inline-block text-center"
+          >
             Book appointment
-          </button>
+          </Link>
         </div>
-      </div>x``
-      
-            <Footer />
-
+      </div>
+      x``
+      <Footer />
     </div>
   );
 }

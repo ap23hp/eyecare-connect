@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
@@ -9,7 +10,7 @@ export default function AboutPage() {
 
       <div className="px-6 py-10 md:px-14 md:py-16 max-w-7xl mx-auto">
         <div className="md:grid md:grid-cols-[340px_1fr] md:gap-16">
-          <div className="w-full max-w-[280px] mx-auto md:max-w-none aspect-square rounded-full overflow-hidden mb-8 md:mb-0">
+          <div className="w-full max-w-70 mx-auto md:max-w-none aspect-square rounded-full overflow-hidden mb-8 md:mb-0">
             <Image
               src="/images/hero-photo.jpg"
               alt="Dr. Aria Whitfield, orthoptist"
@@ -80,9 +81,12 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <button className="w-full md:w-auto md:px-8 rounded-xl bg-accent py-3.5 text-sm font-semibold text-cream">
+            <Link
+              href="/book"
+              className="w-full md:w-auto md:px-8 rounded-xl bg-accent py-3.5 text-sm font-semibold text-cream inline-block text-center"
+            >
               Book a consultation
-            </button>
+            </Link>
           </div>
         </div>
       </div>
