@@ -17,6 +17,25 @@ export default function BookPage() {
   const selectedService = BOOKING_SERVICES.find((s) => s.id === state.typeId);
   const typeName = selectedService?.name ?? "Initial assessment";
 
+  async function handleConfirm() {
+    try {
+      await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          typeName,
+          time: state.time,
+          name: state.name,
+          email: state.email,
+        }),
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
+    dispatch({ type: "CONFIRM" });
+  }
+
   return (
     <div>
       <Navbar />
@@ -42,10 +61,17 @@ export default function BookPage() {
             )}
 
             {state.step === 0 && (
-              <AppointmentTypeStep
-                selectedId={state.typeId}
-                onSelect={(id) => dispatch({ type: "SELECT_TYPE", id })}
-              />
+              <>
+                <p className="text-xs text-muted mb-4 bg-accent-soft rounded-lg px-3 py-2">
+                  Note: this environment sends live emails to a fixed test
+                  address. In production, a verified sending domain would route
+                  messages to any recipient.
+                </p>
+                <AppointmentTypeStep
+                  selectedId={state.typeId}
+                  onSelect={(id) => dispatch({ type: "SELECT_TYPE", id })}
+                />
+              </>
             )}
 
             {state.step === 1 && (
@@ -76,7 +102,7 @@ export default function BookPage() {
                 time={state.time}
                 name={state.name}
                 email={state.email}
-                onConfirm={() => dispatch({ type: "CONFIRM" })}
+                onConfirm={handleConfirm}
               />
             )}
 

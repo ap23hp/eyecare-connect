@@ -73,60 +73,67 @@ export default function ContactPage() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="flex flex-col gap-4 mb-5">
-                  <div>
-                    <label className="block text-xs font-semibold text-muted mb-1.5">
-                      Full name
-                    </label>
-                    <input
-                      required
-                      value={form.name}
-                      onChange={(e) =>
-                        setForm({ ...form, name: e.target.value })
-                      }
-                      placeholder="Jordan Lee"
-                      className="w-full rounded-xl border border-border bg-cream px-3.5 py-3 text-sm outline-none focus:border-accent"
-                    />
+              <>
+                <p className="text-xs text-muted mb-4 bg-accent-soft rounded-lg px-3 py-2">
+                  Note: this environment sends live emails to a fixed test
+                  address. In production, a verified sending domain would route
+                  messages to any recipient.
+                </p>
+                <form onSubmit={handleSubmit}>
+                  <div className="flex flex-col gap-4 mb-5">
+                    <div>
+                      <label className="block text-xs font-semibold text-muted mb-1.5">
+                        Full name
+                      </label>
+                      <input
+                        required
+                        value={form.name}
+                        onChange={(e) =>
+                          setForm({ ...form, name: e.target.value })
+                        }
+                        placeholder="Jordan Lee"
+                        className="w-full rounded-xl border border-border bg-cream px-3.5 py-3 text-sm outline-none focus:border-accent"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-muted mb-1.5">
+                        Email
+                      </label>
+                      <input
+                        required
+                        type="email"
+                        value={form.email}
+                        onChange={(e) =>
+                          setForm({ ...form, email: e.target.value })
+                        }
+                        placeholder="jordan@email.com"
+                        className="w-full rounded-xl border border-border bg-cream px-3.5 py-3 text-sm outline-none focus:border-accent"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-muted mb-1.5">
+                        Message
+                      </label>
+                      <textarea
+                        required
+                        value={form.message}
+                        onChange={(e) =>
+                          setForm({ ...form, message: e.target.value })
+                        }
+                        placeholder="How can we help?"
+                        rows={4}
+                        className="w-full resize-none rounded-xl border border-border bg-cream px-3.5 py-3 text-sm outline-none focus:border-accent"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-muted mb-1.5">
-                      Email
-                    </label>
-                    <input
-                      required
-                      type="email"
-                      value={form.email}
-                      onChange={(e) =>
-                        setForm({ ...form, email: e.target.value })
-                      }
-                      placeholder="jordan@email.com"
-                      className="w-full rounded-xl border border-border bg-cream px-3.5 py-3 text-sm outline-none focus:border-accent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-muted mb-1.5">
-                      Message
-                    </label>
-                    <textarea
-                      required
-                      value={form.message}
-                      onChange={(e) =>
-                        setForm({ ...form, message: e.target.value })
-                      }
-                      placeholder="How can we help?"
-                      rows={4}
-                      className="w-full resize-none rounded-xl border border-border bg-cream px-3.5 py-3 text-sm outline-none focus:border-accent"
-                    />
-                  </div>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full rounded-xl bg-accent py-3.5 text-sm font-semibold text-cream"
-                >
-                  Send message
-                </button>
-              </form>
+                  <button
+                    type="submit"
+                    className="w-full rounded-xl bg-accent py-3.5 text-sm font-semibold text-cream"
+                  >
+                    Send message
+                  </button>
+                </form>
+              </>
             )}
           </div>
         </div>
