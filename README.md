@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EyeCare Connect
 
-## Getting Started
+A full-stack booking website for an orthoptic (eye care) clinic, designed and built end to end by me from visual design through deployment.
 
-First, run the development server:
+**Live demo:** [add your Vercel URL here]
+
+![EyeCare Connect homepage](./screenshots/home.png)
+
+## About this project
+
+EyeCare Connect is a booking platform built for a solo orthoptic practice. The brief was straightforward: a clean, trustworthy, mobile-first website that makes it easy for patients to learn about the practitioner's services and book a consultation online, without the overhead of a full hospital-style system.
+
+I owned the project end to end — visual design and colour system, component architecture, the multi-step booking flow, backend email notifications, and deployment.
+
+## Features
+
+- **Responsive design** across mobile and desktop, built mobile-first with Tailwind CSS
+- **Multi-step booking flow** (consultation type -> date & time -> contact details -> review -> confirmation), driven by a `useReducer`-based state machine
+- **FAQ accordion** and **mobile navigation menu** using component-level state
+- **Contact form** with controlled inputs and client-side validation
+- **Email notifications** on booking and contact form submission, via the Resend API
+- Custom design system (colour tokens, typography) implemented with Tailwind's `@theme` layer
+
+## Tech stack
+
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Email:** Resend API
+- **Deployment:** Vercel
+
+## Pages
+
+| Route | Description |
+|---|---|
+| `/` | Home -- hero, services preview, call to action |
+| `/about` | Practitioner profile and areas of expertise |
+| `/services` | Full list of services offered |
+| `/faq` | Accordion-style frequently asked questions |
+| `/contact` | Contact form with email notification |
+| `/book` | Multi-step appointment booking flow |
+
+## Notable implementation details
+
+- **State management:** the booking flow uses `useReducer` rather than multiple `useState` calls, since several pieces of state (step, selected service, selected time, form fields) change together and needed to be updated atomically.
+- **API routes:** `/api/contact` and `/api/bookings` are Next.js server-side route handlers that validate incoming data and trigger transactional emails via Resend.
+- **Type safety:** booking state, actions, and service data are fully typed, including a discriminated union for reducer actions.
+- **Design system first:** colours, spacing and typography were defined as design tokens before any page was built, so every component pulls from the same source of truth.
+
+## Running locally
+
+```bash
+git clone https://github.com/ap23hp/eyecare-connect.git
+cd eyecare-connect
+npm install
+```
+
+Create a `.env.local` file in the project root with:
+
+```
+RESEND_API_KEY=your_resend_api_key
+```
+
+Then run:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+and open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## A note on email delivery
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Since this project doesn't have a purchased and verified sending domain, live emails are currently limited to a single verified test address rather than any address entered in the forms. Verifying a sending domain (SPF/DKIM/DMARC records) with Resend would remove this restriction in a production deployment. This is also noted directly in the app's UI.
 
-## Learn More
+## Future improvements
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Persist bookings and contact submissions to a database
+- Admin dashboard for the practitioner to view and manage upcoming appointments
+- Authentication for the admin view
